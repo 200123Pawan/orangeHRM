@@ -1,0 +1,35 @@
+import { test, expect } from '@playwright/test';
+test('test', async ({ page }) => {
+await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+await page.getByRole('textbox', { name: 'Username' }).fill('Admin');
+await page.getByRole('textbox', { name: 'Username' }).press('ArrowDown');
+await page.getByRole('textbox', { name: 'Password' }).click();
+await page.getByRole('textbox', { name: 'Password' }).fill('admin123');
+await page.getByRole('button', { name: 'Login' }).click();
+await page.getByRole('link', { name: 'PIM' }).click();
+await page.getByRole('button', { name: ' Add' }).click();
+await page.getByRole('textbox', { name: 'First Name' }).click();
+await page.getByRole('textbox', { name: 'First Name' }).fill('pawanji');
+await page.getByRole('textbox', { name: 'Last Name' }).click();
+await page.getByRole('textbox', { name: 'Last Name' }).fill('gupta');
+await page.getByRole('button', { name: 'Save' }).click();
+await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewPersonalDetails/empNumber/210');
+await page.locator('form').filter({ hasText: 'Employee Full' }).locator('i').nth(1).click();
+await page.getByRole('option', { name: 'Indian' }).click();
+await page.getByText('-- Select --').first().click();
+await page.getByText('Single').click();
+await page.locator('div').filter({ hasText: /^Date of BirthGenderMaleFemale$/ }).locator('i').click();
+await page.getByRole('listitem').filter({ hasText: '2025' }).locator('i').click();
+await page.getByText('2001').click();
+await page.getByText('10').click();
+await page.locator('label').filter({ hasText: /^Male$/ }).locator('span').click();
+await page.locator('form').filter({ hasText: 'Employee Full' }).getByRole('button').click();
+await page.getByRole('link', { name: 'Employee List' }).click();
+await page.locator('div').filter({ hasText: /^Employee Name$/ }).nth(2).click();
+await page.getByRole('textbox', { name: 'Type for hints...' }).first().click();
+await page.getByRole('textbox', { name: 'Type for hints...' }).first().fill('pawanji');
+await page.getByRole('textbox').nth(2).click();
+await page.getByRole('textbox').nth(2).fill('0412');
+await page.getByRole('button', { name: 'Search' }).click();
+
+  });
